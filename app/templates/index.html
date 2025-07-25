@@ -1,0 +1,30 @@
+{% extends 'base.html' %} 
+
+{% block content %}
+
+<div class="container">
+    <h1>IMS Login</h1>
+
+
+    <section>
+        <form action="/" method="post">
+            <label for="email">
+                Email
+            </label>
+            <input type="email" name="email" id="email">
+
+            <label for="password">Password
+            </label>
+            <input type="password" name="password" id="password">
+
+            <button type="submit">Login</button>
+        </form>
+    </section>
+</div>
+
+{% endblock %}
+
+{% block footer %}
+<p>&copy; {{ current_year }}.</p>
+
+{% endblock footer %}

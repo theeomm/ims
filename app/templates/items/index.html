@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% if items %}
+<ul>
+    {% for item in items %}
+    <li>{{item.name}}</li>
+    {% endfor %}
+</ul>
+{% else %}
+
+<div class="container">
+    <p>Yoou have no items in your inventory</p>
+</div>
+
+{% endif %}
+
+{% endblock content %}
