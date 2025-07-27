@@ -1,8 +1,17 @@
+from contextlib import asynccontextmanager
 from fastapi import FastAPI, Request
 from fastapi.staticfiles import StaticFiles
-from app.db.db import lifespan
+from app.db.db import create_db
 from app.dependencies import templates
 from app.routers.items import router as items_router
+
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    # Generate DB
+    create_db()
+    yield
+
 
 app = FastAPI(lifespan=lifespan)
 

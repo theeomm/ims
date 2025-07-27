@@ -1,17 +1,10 @@
 from collections.abc import Generator
-from contextlib import asynccontextmanager
 from typing import Annotated
-from fastapi import Depends, FastAPI
+from fastapi import Depends
 from sqlmodel import create_engine, Session, SQLModel
 from app.conf import settings
 
 engine = create_engine(settings.database_url)
-
-
-@asynccontextmanager
-async def lifespan(app: FastAPI):
-    create_db
-    yield
 
 
 def create_db():
