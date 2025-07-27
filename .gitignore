@@ -13,3 +13,4 @@ wheels/
 
 *.sqlite*
 *.db*
+.env
