@@ -1,0 +1,25 @@
+{
+  "name": "ui",
+  "type": "module",
+  "private": true,
+  "devDependencies": {
+    "@types/bun": "latest",
+    "daisyui": "^5.0.49",
+    "htmx.org": "^2.0.6",
+    "prettier": "^3.6.2",
+    "prettier-plugin-jinja-template": "^2.1.0",
+    "prettier-plugin-tailwindcss": "^0.6.14"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  },
+  "dependencies": {
+    "@tailwindcss/cli": "^4.1.11",
+    "tailwindcss": "^4.1.11"
+  },
+  "scripts": {
+    "dev": "concurrently 'bun run build:css' 'bun run build'",
+    "build:css": "bunx @tailwindcss/cli -i ./src/tailwind.css -o ../app/static/css/app.css --watch",
+    "build": "bun build ./src/index.ts --outdir ../app/static/js --minify --watch"
+  }
+}

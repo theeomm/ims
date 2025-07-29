@@ -16,11 +16,15 @@ async def lifespan(app: FastAPI):
 app = FastAPI(lifespan=lifespan)
 
 
-app.mount("/assets", StaticFiles(directory="app/static"))
+app.mount(
+    "/assets",
+    StaticFiles(directory="app/static"),
+    name="static",
+)
 app.include_router(items_router)
 
 
-@app.get("/")
+@app.get("/", name="home")
 async def home(request: Request):
     context = {"request": request}
     return templates.TemplateResponse("index.html", context)
