@@ -11,9 +11,9 @@ def create_db():
     SQLModel.metadata.create_all(engine)
 
 
-def get_sesion() -> Generator[Session]:
+def get_session() -> Generator[Session]:
     with Session(engine) as session:
         yield session
 
 
-DbSession = Annotated[Session, Depends(get_sesion)]
+DbSession = Annotated[Session, Depends(get_session)]

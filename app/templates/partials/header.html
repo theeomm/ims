@@ -1,0 +1,14 @@
+<header class="w-full bg-primary">
+  <nav class="navbar">
+    <a href="{{ url_for('home') }}" class="flex-1 font-bold tracking-widest"
+      >{{IMS}}</a
+    >
+    <ul class="menu menu-horizontal px-8">
+      <li><a href="{{ url_for('home') }}" class="navbar-item">Home</a></li>
+      <li>
+        <a href="{{ url_for('items:list') }}" class="navbar-item">Items</a>
+      </li>
+      <li class="theme-toggle">{% include 'partials/theme_toggle.html' %}</li>
+    </ul>
+  </nav>
+</header>

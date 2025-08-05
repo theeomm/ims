@@ -20,6 +20,6 @@
   "scripts": {
     "dev": "concurrently 'bun run build:css' 'bun run build'",
     "build:css": "bunx @tailwindcss/cli -i ./src/tailwind.css -o ../app/static/css/app.css --watch",
-    "build": "bun build ./src/index.ts --outdir ../app/static/js --minify --watch"
+    "build": "bun build ./src/index.ts --outdir ../app/static/js --entry-naming app.js --minify --watch"
   }
 }
