@@ -1,0 +1,24 @@
+<div class="card shadow-lg p-4">
+  <table class="table table-zebra w-full">
+    <thead>
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">SKU</th>
+        <th scope="col">Price</th>
+        <th scope="col">Category</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for product in products %}
+      <tr>
+        <td>{{ product.name }}</td>
+        <td>{{ product.sku }}</td>
+        <td>${{ product.price }}</td>
+        <td>
+          {{ product.category.name if product.category else 'Uncategorized' }}
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>

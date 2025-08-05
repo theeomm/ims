@@ -1,0 +1,97 @@
+{% extends "layouts/dashboard.html" %} {% block title %}Dashboard{% endblock %}
+{% block content %}
+<h1 class="text-3xl font-bold mb-6">Dashboard</h1>
+
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+  <!-- Sales Chart -->
+  <div class="card bg-base-100 shadow">
+    <div class="card-body">
+      <h2 class="card-title">Sales (Last 30 Days)</h2>
+      <canvas id="salesChart" height="200"></canvas>
+    </div>
+  </div>
+
+  <!-- Purchases Chart -->
+  <div class="card bg-base-100 shadow">
+    <div class="card-body">
+      <h2 class="card-title">Purchases (Last 30 Days)</h2>
+      <canvas id="purchasesChart" height="200"></canvas>
+    </div>
+  </div>
+
+  <!-- Inventory Chart -->
+  <div class="card bg-base-100 shadow col-span-1 md:col-span-2">
+    <div class="card-body">
+      <h2 class="card-title">Inventory by Category</h2>
+      <canvas id="inventoryChart" height="150"></canvas>
+    </div>
+  </div>
+</div>
+
+<!-- Chart.js CDN -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+  async function renderCharts() {
+    const salesReq = fetch("/stats/sales");
+    const purchasesReq = fetch("/stats/purchases");
+    const inventoryReq = fetch("/stats/inventory");
+
+    const [salesRes, purchasesRes, inventoryRes] = await Promise.all([
+      salesReq,
+      purchasesReq,
+      inventoryReq,
+    ]);
+    const [sales, purchases, inventory] = await Promise.all([
+      salesRes.json(),
+      purchasesRes.json(),
+      inventoryRes.json(),
+    ]);
+
+    new Chart(document.getElementById("salesChart"), {
+      type: "line",
+      data: {
+        labels: sales.labels,
+        datasets: [
+          {
+            label: "Sales",
+            data: sales.data,
+            borderColor: "rgb(59, 130, 246)",
+            fill: false,
+          },
+        ],
+      },
+    });
+
+    new Chart(document.getElementById("purchasesChart"), {
+      type: "line",
+      data: {
+        labels: purchases.labels,
+        datasets: [
+          {
+            label: "Purchases",
+            data: purchases.data,
+            borderColor: "rgb(34, 197, 94)",
+            fill: false,
+          },
+        ],
+      },
+    });
+
+    new Chart(document.getElementById("inventoryChart"), {
+      type: "bar",
+      data: {
+        labels: inventory.labels,
+        datasets: [
+          {
+            label: "Total Stock",
+            data: inventory.data,
+            backgroundColor: "rgb(251, 191, 36)",
+          },
+        ],
+      },
+    });
+  }
+
+  document.addEventListener("DOMContentLoaded", renderCharts);
+</script>
+{% endblock content %}

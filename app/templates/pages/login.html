@@ -1,0 +1,24 @@
+{% extends "layouts/base.html" %} {% block title %}Login{% endblock %} {% block
+content %}
+<form
+  method="post"
+  class="max-w-md mx-auto p-6 bg-base-100 rounded shadow space-y-4"
+>
+  <h2 class="text-xl font-semibold">Login</h2>
+  <input
+    type="text"
+    name="username"
+    placeholder="Username"
+    class="input input-bordered w-full"x`
+    required
+  />
+  <input
+    type="password"
+    name="password"
+    placeholder="Password"
+    class="input input-bordered w-full"
+    required
+  />
+  <button class="btn btn-primary w-full">Login</button>
+</form>
+{% endblock %}

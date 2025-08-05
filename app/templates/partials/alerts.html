@@ -1,0 +1,9 @@
+{% if error %}
+<div class="alert alert-error shadow-lg mb-4">
+  <div><span>{{ error }}</span></div>
+</div>
+{% endif %} {% if message %}
+<div class="alert alert-success shadow-lg mb-4">
+  <div><span>{{ message }}</span></div>
+</div>
+{% endif %}

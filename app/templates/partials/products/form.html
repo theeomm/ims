@@ -1,0 +1,40 @@
+<form
+  hx-post="/products/create"
+  hx-target="#product-list"
+  hx-swap="outerHTML"
+  class="card bg-base-100 shadow p-4 space-y-4 mb-6 w-full md:w-96 mx-auto"
+>
+  <h3 class="text-xl font-semibold">Create New Product</h3>
+
+  <input
+    type="text"
+    name="name"
+    placeholder="Product Name"
+    class="input input-bordered w-full"
+    required
+  />
+  <input
+    type="text"
+    name="sku"
+    placeholder="SKU"
+    class="input input-bordered w-full"
+    required
+  />
+  <input
+    type="number"
+    name="price"
+    placeholder="Price"
+    step="0.01"
+    class="input input-bordered w-full"
+    required
+  />
+
+  <select name="category_id" class="select select-bordered w-full">
+    <option value="" disabled>Select Category</option>
+    {% for category in categories %}
+    <option value="{{ category.id }}">{{ category.name }}</option>
+    {% endfor %}
+  </select>
+
+  <button type="submit" class="btn btn-success">Create</button>
+</form>

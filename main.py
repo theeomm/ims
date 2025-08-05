@@ -7,6 +7,8 @@ from app.routers.inventory import router as inventory_routes
 from app.routers.users import router as user_routes
 from app.routers.auth import router as auth_routes
 from app.routers.transactions import router as transactions_routes
+from app.routers.products import router as products_routes
+from app.routers.stats import router as stats_routes
 
 
 @asynccontextmanager
@@ -29,12 +31,14 @@ app.include_router(user_routes, prefix="/users", tags=["Users"])
 app.include_router(inventory_routes, prefix="/inventory", tags=["Inventory"])
 app.include_router(auth_routes, prefix="/auth", tags=["Authentication"])
 app.include_router(transactions_routes, prefix="/transactions", tags=["Transactions"])
+app.include_router(products_routes, prefix="/products", tags=["Products"])
+app.include_router(stats_routes, prefix="/stats", tags=["Stats"])
 
 
 @app.get("/", name="home")
 async def home(request: Request):
     context = {"request": request}
-    return templates.TemplateResponse("index.html", context)
+    return templates.TemplateResponse("pages/home.html", context)
 
 
 if __name__ == "__main__":
