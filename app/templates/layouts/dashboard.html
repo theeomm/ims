@@ -1,0 +1,28 @@
+{% extends "layouts/base.html" %} {% block title %}Dashboard{% endblock %} {%
+block body %} {% include "partials/navbar.html" %}
+
+<main class="relative min-h-screen mt-16">
+  {% include "partials/alerts.html" %}
+  <div class="drawer lg:drawer-open">
+    <input id="sidebar-toggle" type="checkbox" class="drawer-toggle" />
+    <div class="drawer-content p-4 md:p-6">
+      {% block content %}{% endblock content %}
+    </div>
+    <div class="drawer-side shadow-md">
+      <label
+        for="sidebar-toggle"
+        aria-label="close sidebar"
+        class="drawer-overlay"
+      ></label>
+      <ul class="menu text-base-content bg-base-200 min-h-full w-56">
+        <li><a href="{{ url_for('home') }}">Dashboard</a></li>
+        <li><a href="{{ url_for('products:list') }}">Products</a></li>
+        {#
+        <li><a href="{{ url_for('inventory:sales') }}">Sales</a></li>
+        <li><a href="{{ url_for('inventory:purchases') }}">Purchases</a></li>
+        #}
+      </ul>
+    </div>
+  </div>
+</main>
+{% endblock body %}
